@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 List<String> buttonTitles = [
-    "Sobre",
-    "Projetos",
-    "Contatos",
+    "1. Sobre",
+    "2. Habilidades",
+    "3. Projetos",
+    "4. Contato"
   ];
 
 List<IconData> buttonIcons = [
     Icons.home,
-    Icons.android_outlined,
-    Icons.quick_contacts_mail,
+    Icons.handyman_outlined,
+    Icons.apps,
+    Icons.quick_contacts_mail
 ];

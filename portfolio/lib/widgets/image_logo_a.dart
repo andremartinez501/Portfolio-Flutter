@@ -11,7 +11,7 @@ class Logo extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Image.asset(
-              "lib/assets/logo_a.png",
+              "assets/logo_a.png",
               fit: BoxFit.cover,
               color: const Color.fromRGBO(216, 45, 45, 1),
         
