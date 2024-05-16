@@ -1,8 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:portfolio/constants/size.dart';
+import 'package:portfolio/constants/skills_items.dart';
 import 'package:portfolio/widgets/drawer_mobile.dart';
-import 'package:portfolio/widgets/header_desktop.dart';
-import 'package:portfolio/widgets/header_mobile.dart';
+import 'package:portfolio/widgets/appbar_desktop.dart';
+import 'package:portfolio/widgets/appbar_mobile.dart';
+import 'package:portfolio/widgets/sections/habilidades.dart';
 import 'package:portfolio/widgets/sections/main_desktop.dart';
 import 'package:portfolio/widgets/sections/main_mobile.dart';
 
@@ -25,7 +28,7 @@ class _HomePageState extends State<HomePage> {
           builder: (context, constraints){
           return Scaffold(
             key: scaffoldKey,
-            backgroundColor: const Color.fromRGBO(12, 6, 81, 1),
+            backgroundColor: const Color.fromRGBO(6, 2, 49, 1),
             endDrawer: constraints.maxWidth >= minDesktopWidth
             ? null 
             : const DrawerMobile(),
@@ -37,9 +40,9 @@ class _HomePageState extends State<HomePage> {
           
                 //Header
                 if(constraints.maxWidth >= minDesktopWidth)
-                  const HeaderDesktop()
+                  const AppBarDesktop()
                 else
-                  HeaderMobile(
+                  AppBarMobile(
                     onLogoTap: () {},
                     onMenuTap: () {
                       scaffoldKey.currentState?.openEndDrawer();
@@ -57,21 +60,22 @@ class _HomePageState extends State<HomePage> {
                   width: screenWidth,
                   padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
                   color: const Color.fromRGBO(6, 2, 49, 1),
-                  child: const Column(
+                  child:  const Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       //Título
-                      Text("Habilidades:",
+                        Text("Habilidades:",
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Color.fromRGBO(187, 187, 187, 1)
                         ),
-                      )
-                      
-                    ],
+                      ),
+                        Habilidades()
+                      ],
+                    ),
                   ),
-                ),
+
                 //Projetos
                 Container(
                   height: 500,

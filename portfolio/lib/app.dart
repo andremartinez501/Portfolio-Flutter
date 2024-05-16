@@ -6,11 +6,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: "Portfolio",
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }

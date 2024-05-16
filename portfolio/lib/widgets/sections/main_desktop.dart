@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,74 +12,78 @@ class MainDesktop extends StatelessWidget {
     final screenHeight = screenSize.height;
 
     return Container(
-                  width: screenWidth,
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 20
-                    ),
-                  height: screenHeight/1.2,
-                  constraints: const BoxConstraints(
-                    minHeight: 350.0
-                    ),
+      width: screenWidth,
+      margin: const EdgeInsets.symmetric(
+        horizontal: 20
+      ),
+      height: screenHeight/1.2,
+      constraints: const BoxConstraints(
+        minHeight: 350.0
+      ),
 
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+
+          Expanded( // Usa Expanded para permitir que o texto se ajuste ao espaço disponível
+            flex: 1, // Define a proporção do espaço ocupado pelo texto
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start, // Alinha o texto à esquerda
+              children: [
+                RichText(
+                  text: const TextSpan(
+                    text: "Olá, meu nome é",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Color.fromRGBO(216,45,45,1)
+                    ),
                     children: [
-
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          RichText(
-                            text: const TextSpan(
-                              text: "Olá, meu nome é",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Color.fromRGBO(216,45,45,1)
-                              ),
-                              children: [
-                                TextSpan(
-                                  text:"\nAndré Martinez de Souza.",
-                                  style: TextStyle(
-                                    height: 2,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 40,
-                                    color: Color.fromRGBO(187, 187, 187, 1)
-                                  ) 
-                                ),
-                                TextSpan(
-                                  text: "\nE este é meu portfólio:",
-                                  style: TextStyle(
-                                    height: 1.8,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 40,
-                                    color: Color.fromRGBO(91, 91, 91, 1)
-                                    )
-                                  ),
-                                TextSpan(
-                                  text: """\nSou um estudante de Ciências da Computação atualmente no terceiro semestre no Instituto Mauá de Tecnologia.\nTenho interesse pela área de Ciência de Dados, buscando diariamente meu desenvolvimento profissional e pessoal,\nme desafiando com novos projetos e linguagens.""",
-                                  style: TextStyle(
-                                    height: 1.5,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Color.fromRGBO(91, 91, 91, 1)
-                                    )
-                                  ),
-                              ]
-                            ),
-                          ),
-                          const SizedBox(height: 15)
-
-                        ],
+                      TextSpan(
+                        text:"\nAndré Martinez de Souza.",
+                        style: TextStyle(
+                          height: 2,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 40,
+                          color: Color.fromRGBO(187, 187, 187, 1)
+                        ) 
                       ),
-                      Flexible(
-                        flex: 1,
-                        child: Image.asset(
-                          "assets/prompt.png",
-                          width: screenWidth/2,
-                          ),
-                      ),
-                      ],
-                    ),
-                  );
+                      TextSpan(
+                        text: "\nE este é meu portfólio:",
+                        style: TextStyle(
+                          height: 1.8,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 40,
+                          color: Color.fromRGBO(91, 91, 91, 1)
+                          )
+                        ),
+                      TextSpan(
+                        text: """\nSou um estudante de Ciências da Computação atualmente no terceiro semestre no Instituto Mauá de Tecnologia.\nTenho interesse pela área de Ciência de Dados, buscando diariamente meu desenvolvimento profissional e pessoal,\nme desafiando com novos projetos e linguagens.""",
+                        style: TextStyle(
+                          height: 1.5,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Color.fromRGBO(91, 91, 91, 1)
+                          )
+                        ),
+                    ]
+                  ),
+                ),
+                const SizedBox(height: 15)
+
+              ],
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Image.asset(
+              "assets/prompt.png",
+              width: screenWidth/2,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -16,7 +16,19 @@ const List<Map> skillItems =[
   "title": "Python",
 },
 {
-  "img": "assets/web.png",
-  "title": "Desenvolvimento web",
-}
+  "img": "assets/css3.png",
+  "title": "CSS",
+},
+{
+  "img": "assets/html5.png",
+  "title": "HTML",
+},
+{
+  "img": "assets/javascript.png",
+  "title": "JavaScript",
+},
+{
+ "img": "assets/sql.png",
+ "title": "SQL"
+},
 ];
