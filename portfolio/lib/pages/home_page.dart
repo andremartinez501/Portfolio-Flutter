@@ -1,13 +1,16 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:portfolio/constants/size.dart';
-import 'package:portfolio/constants/skills_items.dart';
+import 'package:portfolio/widgets/custom_text_field.dart';
 import 'package:portfolio/widgets/drawer_mobile.dart';
 import 'package:portfolio/widgets/appbar_desktop.dart';
 import 'package:portfolio/widgets/appbar_mobile.dart';
+import 'package:portfolio/widgets/sections/contato.dart';
 import 'package:portfolio/widgets/sections/habilidades.dart';
 import 'package:portfolio/widgets/sections/main_desktop.dart';
 import 'package:portfolio/widgets/sections/main_mobile.dart';
+import 'package:portfolio/widgets/sections/projetos.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -54,46 +57,24 @@ class _HomePageState extends State<HomePage> {
                   const MainDesktop()
                 else
                   const MainMobile(),
-              
+
+                const SizedBox(height: 200),
                 //Habilidades
-                Container(
-                  width: screenWidth,
-                  padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
-                  color: const Color.fromRGBO(6, 2, 49, 1),
-                  child:  const Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      //Título
-                        Text("Habilidades:",
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(187, 187, 187, 1)
-                        ),
-                      ),
-                        Habilidades()
-                      ],
-                    ),
-                  ),
+                const Habilidades(),
+                const SizedBox(height: 300),
 
                 //Projetos
-                Container(
-                  height: 500,
-                  width: double.maxFinite,
-                  color: const Color.fromRGBO(6, 2, 49, 1)
-                ),
+                const Projetos(),
+
                 //Contato 
-                Container(
-                  height: 500,
-                  width: double.maxFinite,
-                  color: const Color.fromRGBO(6, 2, 49, 1)
-                ),
+                const Contato(),
               ],
-             ),
-            );
-          }
-        );
-         
-    
+            ),
+          );
+        }
+      );     
   }
+
+
 }
+
