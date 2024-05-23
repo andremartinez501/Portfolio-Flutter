@@ -3,7 +3,8 @@ import 'package:portfolio/constants/nav_items.dart';
 import 'package:portfolio/widgets/image_logo_a.dart';
 
 class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarDesktop({super.key});
+  const AppBarDesktop({super.key, required this.onNavMenuTap});
+  final Function(int) onNavMenuTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,9 @@ class AppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                 spacing: 20, // Espaçamento entre os botões
                 children: List.generate(buttonTitles.length, (index) {
                   return TextButton(
-                    onPressed: () {}, // Adicione a funcionalidade de clique em cada botão
+                    onPressed: () {
+                      onNavMenuTap(index);
+                    }, // Adicione a funcionalidade de clique em cada botão
                     child: Text(
                       buttonTitles[index],
                       style: const TextStyle(

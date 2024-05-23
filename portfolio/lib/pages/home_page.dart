@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:portfolio/constants/size.dart';
-import 'package:portfolio/widgets/custom_text_field.dart';
 import 'package:portfolio/widgets/drawer_mobile.dart';
 import 'package:portfolio/widgets/appbar_desktop.dart';
 import 'package:portfolio/widgets/appbar_mobile.dart';
@@ -22,11 +19,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final scrollController = ScrollController();
+  final List<GlobalKey> navbarKeys =List.generate(4, (index) => GlobalKey());
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
     final screenHeight = screenSize.height;
+
         return LayoutBuilder(
           builder: (context, constraints){
           return Scaffold(
@@ -34,47 +35,73 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: const Color.fromRGBO(6, 2, 49, 1),
             endDrawer: constraints.maxWidth >= minDesktopWidth
             ? null 
-            : const DrawerMobile(),
+            : DrawerMobile(onNavItemTap: (int navIndex){
+              scaffoldKey.currentState?.closeEndDrawer();
+              scrollToSection(navIndex);
+            }
+          ),
             
             // Corpo
-            body: ListView(
+            body: SingleChildScrollView(
+              controller: scrollController,
               scrollDirection: Axis.vertical,
-               children: [
-          
-                //Header
-                if(constraints.maxWidth >= minDesktopWidth)
-                  const AppBarDesktop()
-                else
-                  AppBarMobile(
-                    onLogoTap: () {},
-                    onMenuTap: () {
-                      scaffoldKey.currentState?.openEndDrawer();
-                    },
+              child: Column(
+                 children: [
+                  SizedBox(key: navbarKeys.first),
+                  //Header
+                  if(constraints.maxWidth >= minDesktopWidth)
+                     AppBarDesktop(onNavMenuTap: (int navIndex){
+                      scrollToSection(navIndex);
+                     }
+                  )
+                  else
+                    AppBarMobile(
+                      onLogoTap: () {},
+                      onMenuTap: () {
+                        scaffoldKey.currentState?.openEndDrawer();
+                      },
+                    ),
+              
+                  //Desktop
+                  if(constraints.maxWidth >= minDesktopWidth)
+                    const MainDesktop()
+                  else
+                    const MainMobile(),
+              
+                  
+                  //Habilidades
+                  
+                   Habilidades(
+                    key: navbarKeys[1],
                   ),
 
-                //Desktop
-                if(constraints.maxWidth >= minDesktopWidth)
-                  const MainDesktop()
-                else
-                  const MainMobile(),
+                  const SizedBox(height: 500),
+              
+                  //Projetos
+                  Projetos(
+                    key: navbarKeys[2],
+                  ),
+              
+                  //Contato 
+                  Contato(
+                    key: navbarKeys[3],
 
-                const SizedBox(height: 200),
-                //Habilidades
-                const Habilidades(),
-                const SizedBox(height: 300),
-
-                //Projetos
-                const Projetos(),
-
-                //Contato 
-                const Contato(),
+                ),
               ],
             ),
-          );
-        }
-      );     
+          ),
+        );
+      }
+    );     
   }
 
-
+  void scrollToSection(int navIndex){
+    final key = navbarKeys[navIndex];
+    Scrollable.ensureVisible(
+      key.currentContext!, 
+      duration: const Duration(microseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
 }
 
