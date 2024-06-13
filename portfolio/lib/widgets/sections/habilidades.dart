@@ -14,6 +14,12 @@ class _HabilidadesState extends State<Habilidades> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isDesktop = screenWidth > 800;
+    final viewportFraction = isDesktop ? 0.2 : 0.4;
+    final itemMargin = isDesktop ? 10.0 : 20.0;
+    final carouselHeight = isDesktop ? 300.0 : 200.0; // Convertendo para double
+
     return Column(
       children: [
         // Adicione o título Habilidades
@@ -22,21 +28,17 @@ class _HabilidadesState extends State<Habilidades> {
           style: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
-            color: Color.fromRGBO(187, 187, 187, 1)
+            color: Color.fromRGBO(187, 187, 187, 1),
           ),
         ),
         // Adicione um SizedBox para espaçamento
         const SizedBox(height: 50), // Ajuste a altura conforme necessário
         LayoutBuilder(
           builder: (context, constraints) {
-            // Ajuste de viewportFraction e espaçamento baseado na largura da tela
-            double viewportFraction = constraints.maxWidth > 800 ? 0.2 : 0.4;
-            double itemMargin = constraints.maxWidth > 800 ? 10.0 : 20.0;
-
             return CarouselSlider.builder(
               itemCount: skillItems.length,
               options: CarouselOptions(
-                height: 200,
+                height: carouselHeight,
                 viewportFraction: viewportFraction, // Ajuste para mostrar mais itens no desktop
                 enlargeCenterPage: false, // Desabilita o efeito de zoom no item central do carousel
                 enableInfiniteScroll: true, // Habilita rolagem infinita
